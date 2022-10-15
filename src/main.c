@@ -92,7 +92,7 @@ KOS_INIT_ROMDISK(romdisk);
 	}
   #endif
 
-#define printf	pspDebugScreenPrintf
+// #define printf	pspDebugScreenPrintf
 
 #endif
 long int version = 256*65536L*UAEMAJOR + 65536L*UAEMINOR + UAESUBREV;
@@ -106,6 +106,8 @@ struct gui_info gui_data;
 char warning_buffer[256];
 
 char optionsfile[256];
+
+char progpath[256];
 
 /* If you want to pipe printer output to a file, put something like
  * "cat >>printerfile.tmp" above.
@@ -253,6 +255,25 @@ void leave_program (void)
     do_leave_program ();
 }
 
+static void get_base_directory(const char *argv0, char *buffer, int bufsize)
+{
+    *buffer = 0;
+    if (argv0) {
+        const char *s = strrchr(argv0, '/');
+        if (s != NULL) {
+            int n = snprintf(buffer, bufsize, "%.*s", s - argv0, argv0);
+            if (n >= bufsize) {
+                printf("argv[0] too long: %s", argv0);
+                *buffer = 0;
+            }
+        } else {
+            printf("argv[0] has no directory: %s", argv0);
+        }
+    } else {
+        printf("argv[0] is NULL!");
+    }
+}
+
 void real_main (int argc, char **argv)
 {
 #ifdef PSP
@@ -261,6 +282,15 @@ void real_main (int argc, char **argv)
 		SetupCallbacks();
 	#endif
 #endif
+	printf("Program name %s\n", argv[0]);
+	
+    get_base_directory(argv[0], progpath, sizeof(progpath));
+	
+	printf("progpath 1: %s\n", progpath);
+    if (*progpath) {
+        sceIoChdir(progpath);
+    }	
+	
 #ifdef USE_SDL
 //    SDL_Init (SDL_INIT_EVERYTHING | SDL_INIT_NOPARACHUTE);
     SDL_Init (SDL_INIT_VIDEO | SDL_INIT_JOYSTICK 
@@ -329,6 +359,7 @@ int main (int argc, char **argv)
 	}
 #endif
 #endif
+printf("Program n1ame %s\n", argv[0]);
     real_main (argc, argv);
     return 0;
 }

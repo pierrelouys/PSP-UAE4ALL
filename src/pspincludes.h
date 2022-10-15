@@ -17,3 +17,5 @@
 void psp2k_mem_init(void);
 #endif
 #endif
+
+extern char progpath[256];

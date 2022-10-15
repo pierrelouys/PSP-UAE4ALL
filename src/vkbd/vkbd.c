@@ -3,6 +3,7 @@
 #include<SDL.h>
 
 #include "vkbd.h"
+#include "pspincludes.h"
 
 #define MIN_VKBD_TIME 100
 
@@ -143,7 +144,9 @@ int vkbd_init(void)
 {
 	int i;
 	char tmpchar[256];
-	SDL_Surface *tmp=SDL_LoadBMP(DATA_PREFIX "vkbd.bmp");
+	snprintf(tmpchar, sizeof(tmpchar), "%s%s%s", progpath, DATA_PREFIX, "vkbd.bmp");
+	printf("tmpchar 1: %s\n", tmpchar);		
+	SDL_Surface *tmp=SDL_LoadBMP(tmpchar);
 	if (tmp==NULL)
 	{
 		printf("Virtual Keyboard Bitmap Error: %s\n",SDL_GetError());
@@ -155,7 +158,8 @@ int vkbd_init(void)
 		vkey[i]=NULL;
 	for(i=0;i<MAX_KEY;i++)
 	{
-		sprintf(tmpchar,DATA_PREFIX "key%i.bmp", i);
+		sprintf(tmpchar, "%s%skey%i.bmp", progpath, DATA_PREFIX, i);
+		printf("tmpchar 1: %s\n", tmpchar);
 		tmp=SDL_LoadBMP(tmpchar);
 		if (tmp==NULL)
 			break;
