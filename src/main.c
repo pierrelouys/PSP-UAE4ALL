@@ -255,6 +255,7 @@ void leave_program (void)
     do_leave_program ();
 }
 
+// copied from yabause/src/psp/init.c
 static void get_base_directory(const char *argv0, char *buffer, int bufsize)
 {
     *buffer = 0;
@@ -280,17 +281,12 @@ void real_main (int argc, char **argv)
 	pspDebugScreenInit();
 	#ifdef PSP_USERMODE
 		SetupCallbacks();
-	#endif
-#endif
-	printf("Program name %s\n", argv[0]);
-	
+	#endif	
     get_base_directory(argv[0], progpath, sizeof(progpath));
-	
-	printf("progpath 1: %s\n", progpath);
     if (*progpath) {
         sceIoChdir(progpath);
     }	
-	
+#endif
 #ifdef USE_SDL
 //    SDL_Init (SDL_INIT_EVERYTHING | SDL_INIT_NOPARACHUTE);
     SDL_Init (SDL_INIT_VIDEO | SDL_INIT_JOYSTICK 
@@ -359,7 +355,6 @@ int main (int argc, char **argv)
 	}
 #endif
 #endif
-printf("Program n1ame %s\n", argv[0]);
     real_main (argc, argv);
     return 0;
 }
