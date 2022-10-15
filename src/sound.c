@@ -472,8 +472,8 @@ void uae4all_init_sound(void)
 #ifdef DEBUG_SOUND
 	dbgf("Freq=%i, Channels=%i, Buff=%i\n",freq,channels,samples);
 #endif
-	for(i=0;i<NUM_SAMPLES;i++)
-		sample_wave[i]=Mix_LoadWAV(sample_filename[i]);
+	// for(i=0;i<NUM_SAMPLES;i++)
+		// sample_wave[i]=Mix_LoadWAV(sample_filename[i]);
 	char tmpchar[256];
 	snprintf(tmpchar, sizeof(tmpchar), "%s%s%s", progpath, DATA_PREFIX "music.mod");
 	printf("tmpchar 1: %s\n", tmpchar);	
