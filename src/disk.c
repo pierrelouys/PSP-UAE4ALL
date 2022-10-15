@@ -812,7 +812,6 @@ void disk_insert (int num, const char *name)
 	 	* this makes sure that all programs detect disk change correctly
 	 	*/
 		strcpy (drv->newname, name);
-		printf("DRIVE %s\n", name);
 		drv->dskchange_time = 10; /* 1 second disk change delay */
     	} else {
 		/* no delayed insert if drive is already empty */

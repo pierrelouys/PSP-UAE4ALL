@@ -285,7 +285,6 @@ void real_main (int argc, char **argv)
     get_base_directory(argv[0], progpath, sizeof(progpath));
     if (*progpath) {
         sceIoChdir(progpath);
-		printf("start from %s\n",progpath);
     }	
 #endif
 #ifdef USE_SDL
