@@ -136,9 +136,11 @@ enum{
 	SAMPLE_CLICK,
 	NUM_SAMPLES
 };
-// static char *sample_filename[NUM_SAMPLES]={
-	// DATA_PREFIX "click.wav"
-// };
+char *sample_filename[NUM_SAMPLES];
+		sprintf(sample_filename, "%s%s%s", progpath, DATA_PREFIX, "click.wav");
+
+
+
 static Mix_Chunk *sample_wave[NUM_SAMPLES];
 #define play_sample(NSAMPLE) Mix_PlayChannel(0,sample_wave[(NSAMPLE)],0)
 #define play_sampleS(NSAMPLE) Mix_PlayChannel(-1,sample_wave[(NSAMPLE)],0)
@@ -472,12 +474,10 @@ void uae4all_init_sound(void)
 #ifdef DEBUG_SOUND
 	dbgf("Freq=%i, Channels=%i, Buff=%i\n",freq,channels,samples);
 #endif
-	char tmpchar[256];
-	snprintf(tmpchar, sizeof(tmpchar), "%s%s%s", progpath, DATA_PREFIX "click.wav");
-	printf("tmpchar 1: %s\n", tmpchar);
 	for(i=0;i<NUM_SAMPLES;i++)
-		sample_wave[i]=Mix_LoadWAV(tmpchar);
-	sprintf(tmpchar, "%s%s%s", progpath, DATA_PREFIX "music.mod");
+		sample_wave[i]=Mix_LoadWAV(sample_filename[i]);
+	char tmpchar[256];
+	snprintf(tmpchar, sizeof(tmpchar), "%s%s%s", progpath, DATA_PREFIX "music.mod");
 	printf("tmpchar 1: %s\n", tmpchar);	
 	Mix_PlayMusic(Mix_LoadMUS(tmpchar),-1);
 	Mix_VolumeMusic(MUSIC_VOLUME);
