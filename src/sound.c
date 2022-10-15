@@ -136,8 +136,9 @@ enum{
 	SAMPLE_CLICK,
 	NUM_SAMPLES
 };
+static char static_progpath = progpath;
 static char *sample_filename[NUM_SAMPLES]={
-	DATA_PREFIX "click.wav"
+	progpath
 };
 static Mix_Chunk *sample_wave[NUM_SAMPLES];
 #define play_sample(NSAMPLE) Mix_PlayChannel(0,sample_wave[(NSAMPLE)],0)
