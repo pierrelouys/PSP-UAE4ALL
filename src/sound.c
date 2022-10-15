@@ -139,7 +139,7 @@ enum{
 // static char *sample_filename[NUM_SAMPLES]={
 	// DATA_PREFIX "click.wav"
 // };
-static Mix_Chunk *sample_wave[NUM_SAMPLES];
+// static Mix_Chunk *sample_wave[NUM_SAMPLES];
 #define play_sample(NSAMPLE) Mix_PlayChannel(0,sample_wave[(NSAMPLE)],0)
 #define play_sampleS(NSAMPLE) Mix_PlayChannel(-1,sample_wave[(NSAMPLE)],0)
 #endif
