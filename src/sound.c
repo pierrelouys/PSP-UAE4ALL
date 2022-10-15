@@ -138,7 +138,6 @@ enum{
 };
 char *sample_filename[NUM_SAMPLES];
 		sprintf(sample_filename, "%s%s%s", progpath, DATA_PREFIX, "click.wav");
-		printf("sample_filename 1: %s\n", sample_filename);
 
 
 
