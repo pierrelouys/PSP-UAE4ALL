@@ -162,7 +162,7 @@ void black_screen_now(void)
 #ifdef DOUBLEBUFFER
 	SDL_Flip(prSDLScreen);
 #else
-	SDL_UpdateRect(prSDLScreen, 0, 0, 320, 272);
+	SDL_UpdateRect(prSDLScreen, 0, 0, 480, 272);
 #endif
 
 }
