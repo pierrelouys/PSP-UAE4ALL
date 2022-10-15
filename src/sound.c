@@ -136,13 +136,10 @@ enum{
 	SAMPLE_CLICK,
 	NUM_SAMPLES
 };
-
-char tmpchar[256];
-snprintf(tmpchar, sizeof(tmpchar), "%s%s%s", progpath, DATA_PREFIX "click.wav");
-printf("tmpchar 1: %s\n", tmpchar);
-	
 static char *sample_filename[NUM_SAMPLES]={
-	tmpchar	
+	char tmpchar[256];
+	snprintf(tmpchar, sizeof(tmpchar), "%s%s%s", progpath, DATA_PREFIX "click.wav");
+	printf("tmpchar 1: %s\n", tmpchar);
 };
 static Mix_Chunk *sample_wave[NUM_SAMPLES];
 #define play_sample(NSAMPLE) Mix_PlayChannel(0,sample_wave[(NSAMPLE)],0)
