@@ -1,7 +1,7 @@
 #include<SDL.h>
 
 #define VKBD_X 20
-#define VKBD_Y 200
+#define VKBD_Y 230
 
 #define VKBD_LEFT	1
 #define VKBD_RIGHT	2	

@@ -75,6 +75,7 @@ void read_joystick(int nr, unsigned int *dir, int *button)
     if (left) top = !top;
     if (right) bot = !bot;
     *dir = bot | (right << 1) | (top << 8) | (left << 9);
+#endif
 #else
     int hat=15^(SDL_JoystickGetHat(joy,0));
     if (hat & SDL_HAT_LEFT)
@@ -88,6 +89,7 @@ void read_joystick(int nr, unsigned int *dir, int *button)
     if (vkbd_button2==(SDLKey)0)
     	top |= SDL_JoystickGetButton(joy,6) & 1;
     *button = SDL_JoystickGetButton(joy,2) & 1;
+#endif
     
     if(vkbd_mode && nr)
     {
@@ -119,14 +121,12 @@ void read_joystick(int nr, unsigned int *dir, int *button)
 	else if (SDL_JoystickGetButton(joy,6)&1)
 		vkbd_move=VKBD_BUTTON2;
     }
-    else
-    {
-    	if (left) top = !top;
-    	if (right) bot = !bot;
-    	*dir = bot | (right << 1) | (top << 8) | (left << 9);
-    }
-#endif
-#endif
+    // else
+    // {
+    	// if (left) top = !top;
+    	// if (right) bot = !bot;
+    	// *dir = bot | (right << 1) | (top << 8) | (left << 9);
+    // }
 }
 
 void init_joystick(void)

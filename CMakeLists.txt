@@ -23,6 +23,7 @@ add_definitions(-DUSE_FAME_CORE)
 add_definitions(-DOPTIMIZED_FLAGS)
 
 add_definitions(-DOS_WITHOUT_MEMORY_MANAGEMENT)
+add_definitions(-DVKBD_ALWAYS)
 add_definitions(-DUSE_SDL)
 
 add_definitions(-DUNALIGNED_PROFITABLE)

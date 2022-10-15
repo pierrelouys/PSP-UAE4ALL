@@ -20,7 +20,9 @@ jobs:
       - name: Install dependencies
         run: |
           apk add bash cmake git gmp mpc1 mpfr4 make
-      
+      - run: |
+          git config --global --add safe.directory /__w/PSP-UAE4ALL/PSP-UAE4ALL
+          
       - name: Checkout
         uses: actions/checkout@v2
       
