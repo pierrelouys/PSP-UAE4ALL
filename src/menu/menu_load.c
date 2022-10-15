@@ -14,6 +14,8 @@
 #include "options.h"
 #include "sound.h"
 
+#include "pspincludes.h"
+
 #define MAX_FILELEN 29
 
 typedef struct{
@@ -393,10 +395,15 @@ static int key_loadMenu(int *c)
 				if ((text_dir_files[text_dir_num_files_index].d_type==4)||(!strcmp((char *)&text_dir_files[text_dir_num_files_index].d_name,"."))||(!strcmp((char *)&text_dir_files[text_dir_num_files_index].d_name,"..")))
 				{
 					char *tmp=(char *)calloc(1,512);
+					printf("tmp: %s\n", tmp);
 					strcpy(tmp,text_dir_files[text_dir_num_files_index].d_name);
+					printf("tmp2: %s\n", tmp);
+					printf("dname: %s\n", text_dir_files[text_dir_num_files_index].d_name);
 					if (getFiles(tmp))
 						end=-1;
 					free(tmp);
+					sceIoChdir(progpath);
+					printf("progpath: %s\n", progpath);
 				}
 				else
 				{

@@ -3,6 +3,7 @@
 #include<SDL.h>
 
 #include "vkbd.h"
+
 #include "pspincludes.h"
 
 #define MIN_VKBD_TIME 100
@@ -144,7 +145,7 @@ int vkbd_init(void)
 {
 	int i;
 	char tmpchar[256];
-	snprintf(tmpchar, sizeof(tmpchar), "%s%s%s", progpath, DATA_PREFIX, "vkbd.bmp");
+	snprintf(tmpchar, sizeof(tmpchar), "%s%s", progpath, "/data/vkbd.bmp");
 	printf("tmpchar 1: %s\n", tmpchar);		
 	SDL_Surface *tmp=SDL_LoadBMP(tmpchar);
 	if (tmp==NULL)
@@ -158,7 +159,7 @@ int vkbd_init(void)
 		vkey[i]=NULL;
 	for(i=0;i<MAX_KEY;i++)
 	{
-		sprintf(tmpchar, "%s%skey%i.bmp", progpath, DATA_PREFIX, i);
+		sprintf(tmpchar, "%s/data/key%i.bmp", progpath, i);
 		printf("tmpchar 1: %s\n", tmpchar);
 		tmp=SDL_LoadBMP(tmpchar);
 		if (tmp==NULL)

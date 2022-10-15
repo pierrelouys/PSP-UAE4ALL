@@ -29,7 +29,7 @@ add_definitions(-DUSE_SDL)
 add_definitions(-DUNALIGNED_PROFITABLE)
 add_definitions(-DMENU_MUSIC)
 
-add_definitions(-DROM_PATH_PREFIX=\"/disks/\" -DDATA_PREFIX=\"/data/\" -DSAVE_PREFIX=\"/\")
+add_definitions(-DROM_PATH_PREFIX=\"./disks/\" -DDATA_PREFIX=\"./data/\" -DSAVE_PREFIX=\"./\")
 add_definitions(-DDATA_PREFIX=\"./data/\")
 
 include_directories(src src/include src/menu src/vkbd /src/m68k)

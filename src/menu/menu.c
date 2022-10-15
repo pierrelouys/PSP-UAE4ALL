@@ -15,7 +15,6 @@
 
 #include "msg.h"
 #include "fade.h"
-#include "pspincludes.h"
 
 #ifdef DREAMCAST
 #define VIDEO_FLAGS_INIT SDL_HWSURFACE|SDL_FULLSCREEN
@@ -51,10 +50,7 @@ extern int __sdl_dc_emulate_keyboard;
 
 static void obten_colores(void)
 {
-	char tmpchar[256];
-	snprintf(tmpchar, sizeof(tmpchar), "%s%s%s", progpath, DATA_PREFIX, "colors.txt");
-	printf("tmpchar 1: %s\n", tmpchar);
-	FILE *f=fopen(tmpchar, "rt");
+	FILE *f=fopen(DATA_PREFIX "colors.txt", "rt");
 	if (f)
 	{
 		Uint32 r,g,b;
@@ -211,11 +207,8 @@ void init_text(int splash)
 #endif
 	if (!text_screen)
 	{
-		text_screen=SDL_CreateRGBSurface(prSDLScreen->flags,prSDLScreen->w,prSDLScreen->h,prSDLScreen->format->BitsPerPixel,prSDLScreen->format->Rmask,prSDLScreen->format->Gmask,prSDLScreen->format->Bmask,prSDLScreen->format->Amask);		
-		char tmpchar[256];
-		snprintf(tmpchar, sizeof(tmpchar), "%s%s", progpath, MENU_FILE_TEXT);
-		printf("tmpchar 1: %s\n", tmpchar);	
-		tmp=SDL_LoadBMP(tmpchar);
+		text_screen=SDL_CreateRGBSurface(prSDLScreen->flags,prSDLScreen->w,prSDLScreen->h,prSDLScreen->format->BitsPerPixel,prSDLScreen->format->Rmask,prSDLScreen->format->Gmask,prSDLScreen->format->Bmask,prSDLScreen->format->Amask);
+		tmp=SDL_LoadBMP(MENU_FILE_TEXT);
 		if (text_screen==NULL || tmp==NULL)
 			exit(-1);
 		text_image=SDL_DisplayFormat(tmp);
@@ -223,18 +216,14 @@ void init_text(int splash)
 		if (text_image==NULL)
 			exit(-2);
 		SDL_SetColorKey(text_image,(SDL_SRCCOLORKEY | SDL_RLEACCEL),SDL_MapRGB(text_image -> format, 0, 0, 0));
-		sprintf(tmpchar, "%s%s", progpath, MENU_FILE_BACKGROUND);
-		printf("tmpchar 1: %s\n", tmpchar);
-		tmp=SDL_LoadBMP(tmpchar);
+		tmp=SDL_LoadBMP(MENU_FILE_BACKGROUND);
 		if (tmp==NULL)
 			exit(-3);
 		text_background=SDL_DisplayFormat(tmp);
 		SDL_FreeSurface(tmp);
 		if (text_background==NULL)
 			exit(-3);
-		snprintf(tmpchar, sizeof(tmpchar), "%s%s", progpath, MENU_FILE_WINDOW);
-		printf("tmpchar 1: %s\n", tmpchar);
-		tmp=SDL_LoadBMP(tmpchar);
+		tmp=SDL_LoadBMP(MENU_FILE_WINDOW);
 		if (tmp==NULL)
 			exit(-4);
 		text_window_background=SDL_DisplayFormat(tmp);
@@ -251,10 +240,7 @@ void init_text(int splash)
 		obten_colores();
 		uae4all_init_sound();
 #if !defined(DEBUG_UAE4ALL) && !defined(PROFILER_UAE4ALL) && !defined(AUTO_RUN) && !defined(AUTO_FRAMERATE)
-		char tmpchar[256];
-		snprintf(tmpchar, sizeof(tmpchar), "%s%s", progpath, MENU_FILE_SPLASH);
-		printf("tmpchar 1: %s\n", tmpchar);
-		tmp=SDL_LoadBMP(tmpchar);
+		tmp=SDL_LoadBMP(MENU_FILE_SPLASH);
 		if (tmp==NULL)
 			exit(-6);
 		sur = SDL_DisplayFormat(tmp);

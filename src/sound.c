@@ -23,7 +23,6 @@
 #include "custom.h"
 #include "xwin.h"
 #include "drawing.h"
-#include "pspincludes.h"
 
 #ifdef DREAMCAST
 #include <SDL_dreamcast.h>
@@ -136,11 +135,9 @@ enum{
 	SAMPLE_CLICK,
 	NUM_SAMPLES
 };
-char *sample_filename[NUM_SAMPLES];
-		sprintf(sample_filename, "%s%s%s", progpath, DATA_PREFIX, "click.wav");
-
-
-
+static char *sample_filename[NUM_SAMPLES]={
+	DATA_PREFIX "click.wav"
+};
 static Mix_Chunk *sample_wave[NUM_SAMPLES];
 #define play_sample(NSAMPLE) Mix_PlayChannel(0,sample_wave[(NSAMPLE)],0)
 #define play_sampleS(NSAMPLE) Mix_PlayChannel(-1,sample_wave[(NSAMPLE)],0)
@@ -476,10 +473,7 @@ void uae4all_init_sound(void)
 #endif
 	for(i=0;i<NUM_SAMPLES;i++)
 		sample_wave[i]=Mix_LoadWAV(sample_filename[i]);
-	char tmpchar[256];
-	snprintf(tmpchar, sizeof(tmpchar), "%s%s%s", progpath, DATA_PREFIX "music.mod");
-	printf("tmpchar 1: %s\n", tmpchar);	
-	Mix_PlayMusic(Mix_LoadMUS(tmpchar),-1);
+	Mix_PlayMusic(Mix_LoadMUS(DATA_PREFIX "music.mod"),-1);
 	Mix_VolumeMusic(MUSIC_VOLUME);
 #ifdef USE_SOUND_SEMS
 	uae_sem_init (&data_available_sem, 0, 0);
