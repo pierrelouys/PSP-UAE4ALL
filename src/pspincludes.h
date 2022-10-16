@@ -19,4 +19,3 @@ void psp2k_mem_init(void);
 #endif
 
 extern char progpath[256];
-extern char disk_dir[256];

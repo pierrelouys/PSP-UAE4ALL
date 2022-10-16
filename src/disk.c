@@ -34,8 +34,6 @@
 #include "osemu.h"
 #include "execlib.h"
 
-#include "pspincludes.h"
-
 
 char prefs_df[NUM_DRIVES][128];
 char changed_df[NUM_DRIVES][128];
@@ -825,10 +823,6 @@ void disk_insert (int num, const char *name)
 void DISK_check_change (void)
 {
     int i;
-
-    if (*progpath) {
-        sceIoChdir(progpath);
-    }
 
 #ifdef DEBUG_DISK
     dbg("disc.c : DISK_check_change");

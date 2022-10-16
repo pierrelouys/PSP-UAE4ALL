@@ -162,10 +162,6 @@ int vkbd_init(void)
 		sprintf(tmpchar, "%s/data/key%i.bmp", progpath, i);
 		printf("tmpchar 1: %s\n", tmpchar);
 		tmp=SDL_LoadBMP(tmpchar);
-		if (*disk_dir) {
-			sceIoChdir(disk_dir);
-			printf("changed to %s\n", disk_dir);
-		}			
 		if (tmp==NULL)
 			break;
 		vkey[i]=SDL_DisplayFormat(tmp);

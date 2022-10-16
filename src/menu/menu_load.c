@@ -48,8 +48,6 @@ char *text_load=NULL;
 static char actual_dir[128];
 // #endif
 
-char disk_dir[256];
-
 
 static int min_in_dir=0, max_in_dir=SHOW_MAX_FILES;
 
@@ -396,9 +394,6 @@ static int key_loadMenu(int *c)
 				{
 					char *tmp=(char *)calloc(1,512);
 					strcpy(tmp,text_dir_files[text_dir_num_files_index].d_name);
-					printf("DIR IS %s\n", text_dir_files[text_dir_num_files_index].d_name);
-					snprintf(disk_dir, sizeof(disk_dir), "%s/%s", progpath, text_dir_files[text_dir_num_files_index].d_name);
-					printf("DISK_DIR IS %s\n", disk_dir);
 					if (getFiles(tmp))
 						end=-1;
 					free(tmp);
