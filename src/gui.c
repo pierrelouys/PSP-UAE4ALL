@@ -89,7 +89,7 @@ int gui_init (void)
 #ifdef DREAMCAST
 	prSDLScreen=SDL_SetVideoMode(320,240,16,VIDEO_FLAGS);
 #else
-	prSDLScreen=SDL_SetVideoMode(480, 272, 16, SDL_SWSURFACE | SDL_FULLSCREEN);
+	prSDLScreen=SDL_SetVideoMode(478,270,16,VIDEO_FLAGS);
 #endif
     SDL_ShowCursor(SDL_DISABLE);
     SDL_JoystickEventState(SDL_ENABLE);
