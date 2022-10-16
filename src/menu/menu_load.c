@@ -43,10 +43,10 @@ char *text_load=NULL;
 #define MAX_FILES_PER_DIR 1024
 #define SHOW_MAX_FILES 13
 
-#ifdef DREAMCAST
-#define chdir(A) fs_chdir(A)
+// #ifdef DREAMCAST
+// #define chdir(A) fs_chdir(A)
 static char actual_dir[128];
-#endif
+// #endif
 
 char disk_dir[256];
 
@@ -65,11 +65,11 @@ static void copyCompleteName(char *dest, int n)
 		strcpy(dest,src);
 	else
 	{
-#ifdef DREAMCAST
+// #ifdef DREAMCAST
 		DIR *d=opendir(actual_dir);
-#else
-		DIR *d=opendir(".");
-#endif
+// #else
+		// DIR *d=opendir(".");
+// #endif
 		if (d)
 		{
 			int i,indice=0,buscado=src[MAX_FILELEN+1];
@@ -151,7 +151,7 @@ static int getFiles(char *dir)
 	text_flip();
 
 	text_dir_files=(fichero *)calloc(sizeof(fichero),MAX_FILES_PER_DIR);
-#ifdef DREAMCAST
+// #ifdef DREAMCAST
         if (!strcmp(dir,".."))
         {
                 int ind;
@@ -164,7 +164,7 @@ static int getFiles(char *dir)
                 d=opendir(actual_dir);
         }
         else
-#endif
+// #endif
 	d=opendir(dir);
 	if (d==NULL)
 		return -1;
@@ -208,9 +208,9 @@ static int getFiles(char *dir)
 	closedir(d);
 	text_dir_num_files=i;
 
-#ifndef DREAMCAST
-        chdir(dir);
-#else
+// #ifndef DREAMCAST
+        // chdir(dir);
+// #else
         if (strcmp(dir,MENU_DIR_DEFAULT))
         {
                 if (strcmp(dir,".."))
@@ -237,7 +237,7 @@ static int getFiles(char *dir)
                 }
                 text_dir_num_files++;
 	}
-#endif
+// #endif
 
 	for(i=0;i<text_dir_num_files;i++)
 	{
@@ -470,9 +470,9 @@ static void unraise_loadMenu()
 
 int getDefaultFiles(void)
 {
-#ifdef DREAMCAST
+// #ifdef DREAMCAST
 	strcpy(actual_dir,MENU_DIR_DEFAULT);
-#endif
+// #endif
 	return(getFiles(MENU_DIR_DEFAULT));
 }
 
