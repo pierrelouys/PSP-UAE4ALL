@@ -37,7 +37,7 @@ unsigned long long uae4all_prof_executed[UAE4ALL_PROFILER_MAX];
 #define VIDEO_FLAGS_INIT SDL_HWSURFACE|SDL_FULLSCREEN
 #else
  #ifdef PSP
- #define VIDEO_FLAGS_INIT SDL_SWSURFACE
+ #define VIDEO_FLAGS_INIT SDL_SWSURFACE|SDL_FULLSCREEN
  #else
  #define VIDEO_FLAGS_INIT SDL_HWSURFACE
  #endif
@@ -89,7 +89,7 @@ int gui_init (void)
 #ifdef DREAMCAST
 	prSDLScreen=SDL_SetVideoMode(320,240,16,VIDEO_FLAGS);
 #else
-	prSDLScreen=SDL_SetVideoMode(480,262,16,VIDEO_FLAGS);
+	prSDLScreen=SDL_SetVideoMode(480,272,16,VIDEO_FLAGS);
 #endif
     SDL_ShowCursor(SDL_DISABLE);
     SDL_JoystickEventState(SDL_ENABLE);
